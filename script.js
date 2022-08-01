@@ -1,3 +1,6 @@
+let userRecord = 0, computerRecord = 0;
+let computerChoice = getComputerChoice();
+
 function getComputerChoice() {
     let choice = ["rock", "paper", "scissors"];
     let random = Math.floor(Math.random() * 3)  
@@ -29,23 +32,8 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-
-
-    console.log("WELCOME TO ROCK PAPER SCISSORS")
-    for (let index = 0; index < 5; index++) {
-        let userChoice = prompt('Choose your weapon: ')
-
-        let computerChoice = getComputerChoice()
-
-        console.log(`You have chosen ${userChoice.toLowerCase()}!`)
-
-        let round = playRound(userChoice.toLowerCase(), computerChoice, userRecord, computerRecord)
-        console.log(`The computer has chosen ${computerChoice}!`)
-        console.log(round)
-                
-    }
-}
-
-let userRecord = 0, computerRecord = 0
-game()
+const buttons = document.querySelectorAll("button");
+const game = buttons.forEach(button => button.addEventListener('click', function (e) {
+    const userInput = button.classList.value
+    console.log(playRound(userInput, computerChoice));
+}));
