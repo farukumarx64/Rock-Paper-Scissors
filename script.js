@@ -32,8 +32,27 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll("input");
+const display = document.querySelector(".display");
+let results = document.createElement("p");
+let announcement = document.createElement("p");
+
+results.style.cssText = "color: gold; font-family: 'Gaming'; flex-shrink: 0;";
+announcement.style.cssText = "color: gold; font-family: 'Gaming'; flex-shrink: 0; font-size: 28px";
+
+
 const game = buttons.forEach(button => button.addEventListener('click', function (e) {
     const userInput = button.classList.value
-    console.log(playRound(userInput, computerChoice));
+    results.textContent = playRound(userInput, computerChoice);
+    display.appendChild(results);
+
+    if ((userRecord + computerRecord) === 5) {
+        if (userRecord > computerRecord) {
+            announcement.textContent = "You won! CONGRATULATIONS";
+            display.appendChild(announcement);
+        } else if (computerRecord > userRecord){
+            announcement.textContent = "Computer won! HARD LUCK";
+            display.appendChild(announcement);
+        }
+    }
 }));
